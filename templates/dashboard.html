@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mt-4 fw-bold">
+        Your Financial Overview
+    </h2>
+
+    <p class="text-muted">
+        Track and manage your expenses
+    </p>
+
+    <!-- Dashboard Cards -->
+    <div class="row mt-4">
+
+        <!-- Total Expenses -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-3">
+            <div class="card shadow-sm border-start border-primary border-4">
+                <div class="card-body">
+                    <h6>Total Expenses</h6>
+                    <h3>₹{{ total_expense }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Transactions -->
+        <div class="col-md-3">
+            <div class="card shadow-sm border-start border-success border-4">
+                <div class="card-body">
+                    <h6>Total Transactions</h6>
+                    <h3>{{ total_transactions }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Category -->
+        <div class="col-md-3">
+            <div class="card shadow-sm border-start border-warning border-4">
+                <div class="card-body">
+                    <h6>Top Category</h6>
+                    <h3>{{ top_category }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="col-md-3">
+            <div class="card shadow-sm border-start border-danger border-4">
+                <div class="card-body">
+                    <h6>Recent Activity</h6>
+
+                    {% if recent_activity %}
+                        <h3>{{ recent_activity.title }}</h3>
+                    {% else %}
+                        <h3>No Data</h3>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recent Expenses Table -->
+    <div class="card shadow-sm mt-4">
+
+        <div class="card-body">
+
+            <h4>Recent Expenses</h4>
+
+            <table class="table table-hover mt-3">
+
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for expense in recent_expenses %}
+
+                    <tr>
+                        <td>{{ expense.title }}</td>
+                        <td>₹{{ expense.amount }}</td>
+                        <td>{{ expense.category }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

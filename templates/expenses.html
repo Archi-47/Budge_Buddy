@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mt-4 fw-bold">
+        All Expenses
+    </h2>
+
+    <p class="text-muted">
+        View, search, edit and manage expenses
+    </p>
+
+    <!-- Search Form -->
+
+    <form method="GET" action="/expenses">
+
+        <div class="row mb-3">
+
+            <div class="col-md-6">
+
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search expense title...">
+
+            </div>
+
+            <div class="col-md-2">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Search
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- Expense Table -->
+
+    <div class="card shadow-sm">
+
+        <div class="card-body table-responsive">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for expense in expenses %}
+
+                    <tr>
+
+                        <td>{{ expense.id }}</td>
+
+                        <td>{{ expense.title }}</td>
+
+                        <td>₹{{ expense.amount }}</td>
+
+                        <td>{{ expense.category }}</td>
+
+                        <td>
+
+                            <a href="/edit-expense/{{ expense.id }}"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a href="/delete-expense/{{ expense.id }}"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
