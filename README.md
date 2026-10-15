@@ -1,4 +1,4 @@
-# Expense Tracker
+# Budget Budget 
 
 A web-based Expense Tracker built using Flask, SQLite, SQLAlchemy, Bootstrap, HTML, and CSS.
 
